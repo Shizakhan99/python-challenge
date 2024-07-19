@@ -1,7 +1,7 @@
 import csv
 
 # Read the election data from the CSV file
-with open('election_data.csv', 'r') as file:
+with open('PyPoll\Resources\election_data.csv', 'r') as file:
     reader = csv.reader(file)
     next(reader)  # Skip the header row
 
@@ -32,3 +32,14 @@ for candidate, percentage, votes in results:
 print("-------------------------")
 print(f"Winner: {winner[0]}")
 print("-------------------------")
+
+with open('election_results.txt', 'w') as text_file:
+    text_file.write("Election Results\n")
+    text_file.write("-------------------------\n")
+    text_file.write(f"Total Votes: {total_votes}\n")
+    text_file.write("-------------------------\n")
+    for candidate, percentage, votes in results:
+        text_file.write(f"{candidate}: {percentage:.3f}% ({votes})\n")
+    text_file.write("-------------------------\n")
+    text_file.write(f"Winner: {winner[0]}\n")
+    text_file.write("---------------------")
